@@ -8,9 +8,8 @@ import Footer from '@/components/Footer'
 
 export default function DatacenterPage() {
   useEffect(() => {
-    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll')
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
@@ -19,15 +18,15 @@ export default function DatacenterPage() {
           }, index * 150)
         }
       })
-    }, { 
+    }, {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     })
-    
+
     animateElements.forEach(item => {
       observer.observe(item)
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
@@ -40,9 +39,9 @@ export default function DatacenterPage() {
   ]
 
   const galleryImages = [
-    { src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop&auto=format&q=80", title: "Data Center Infrastructure" },
-    { src: "https://images.unsplash.com/photo-1558002038-1055907df827?w=600&h=400&fit=crop&auto=format&q=80", title: "Server Racks & Cabinets" },
-    { src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop&auto=format&q=80", title: "Cooling Systems" }
+    { src: "/images/data2.jpg", title: "Data Center Infrastructure" },
+    { src: "/images/data.webp", title: "Server Racks & Cabinets" },
+    { src: "/images/cool.webp", title: "Cooling Systems" }
   ]
 
   const cabinetFeatures = [
@@ -107,7 +106,7 @@ export default function DatacenterPage() {
                 <img 
                   src={image.src} 
                   alt={image.title}
-                  className="w-full h-[200px] object-cover"
+                  className="w-full h-[180px] object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
                   <div className="text-white font-['Orbitron'] text-xs">{image.title}</div>

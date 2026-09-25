@@ -27,6 +27,33 @@
   }
 }
 
+/* ===== PREVENT TEXT SELECTION & HIGHLIGHTING ===== */
+/* Disable selection globally */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable selection for form fields so users can still type/select */
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Prevent image dragging and callout on long-press (mobile) */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 /* PURE BLACK BACKGROUND - for dark theme pages */
 .cyber-bg {
   position: fixed;
@@ -65,6 +92,7 @@
   background: #012156;
 }
 
+/* Selection color (kept for form fields which still allow selection) */
 ::selection {
   background: rgba(90, 190, 113, 0.3);
   color: #012156;

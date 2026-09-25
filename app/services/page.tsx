@@ -9,7 +9,6 @@ import Footer from '@/components/Footer'
 export default function ServicesPage() {
   const [activeCategory, setActiveCategory] = useState('all')
 
-  // Use a ref to track if the component is mounted
   const isMounted = useRef(true)
 
   useEffect(() => {
@@ -19,31 +18,27 @@ export default function ServicesPage() {
     }
   }, [])
 
-  // Run animation observer whenever activeCategory changes
   useEffect(() => {
-    // Small delay to let DOM update
     const timer = setTimeout(() => {
       const animateElements = document.querySelectorAll('.animate-on-scroll')
-      
-      // Remove active class from all elements
+
       animateElements.forEach(el => el.classList.remove('active'))
-      
-      // Re-observe elements
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && isMounted.current) {
             entry.target.classList.add('active')
           }
         })
-      }, { 
+      }, {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
       })
-      
+
       animateElements.forEach(item => {
         observer.observe(item)
       })
-      
+
       return () => observer.disconnect()
     }, 50)
 
@@ -158,8 +153,8 @@ export default function ServicesPage() {
     }
   ]
 
-  const filteredServices = activeCategory === 'all' 
-    ? allServices 
+  const filteredServices = activeCategory === 'all'
+    ? allServices
     : allServices.filter(service => service.category === activeCategory)
 
   const whyItems = [
@@ -185,18 +180,28 @@ export default function ServicesPage() {
     }
   ]
 
-  // Partner logos
+  // Partner logos — SAME as home page (from /public/images/partners/)
   const partnerLogos = [
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Cisco',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Nexans',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Sophos',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Alcatel',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Cyberoam',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=NComputing',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=VMware',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Microsoft',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Dell',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=HP',
+    { src: '/images/partners/sigona.png', alt: 'Sigona Golf Club' },
+    { src: '/images/partners/uplands.png', alt: 'Uplands Farm' },
+    { src: '/images/partners/turnpoint.jpg', alt: 'Turnpoint' },
+    { src: '/images/partners/uhai.jpg', alt: 'Uhai' },
+    { src: '/images/partners/roy.png', alt: 'Roy' },
+    { src: '/images/partners/cylinder.png', alt: 'Cylinder' },
+    { src: '/images/partners/pcea.png', alt: 'PCEA' },
+    { src: '/images/partners/child.png', alt: 'Child' },
+    { src: '/images/partners/clinton.png', alt: 'Clinton Hotel' },
+    { src: '/images/partners/edenville (1).png', alt: 'EdenVille' },
+    { src: '/images/partners/faith.png', alt: 'Faith' },
+    { src: '/images/partners/ikweta.png', alt: 'Ikweta' },
+    { src: '/images/partners/kirinyaga.png', alt: 'Kirinyaga' },
+    { src: '/images/partners/linksoft.png', alt: 'Linksoft' },
+    { src: '/images/partners/moi (1).png', alt: 'Moi' },
+    { src: '/images/partners/ag (1).png', alt: 'AG' },
+    { src: '/images/partners/happy (1).png', alt: 'Happy' },
+    { src: '/images/partners/runda.png', alt: 'Runda' },
+    { src: '/images/partners/Texaco.png', alt: 'Texaco' },
+    { src: '/images/partners/spring-logo.png', alt: 'Spring' },
   ]
 
   return (
@@ -206,7 +211,6 @@ export default function ServicesPage() {
 
         {/* ===== SERVICES HERO ===== */}
         <section className="relative py-12 md:py-16 pt-32 sm:pt-28 lg:pt-32">
-          {/* Background Watermark */}
           <div
             className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
             style={{
@@ -234,7 +238,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ===== CATEGORY TABS - SCROLLABLE ROW ===== */}
+        {/* ===== CATEGORY TABS ===== */}
         <section className="py-4">
           <div className="overflow-x-auto scrollbar-hide">
             <div className="flex gap-2 mb-6 min-w-max pb-2">
@@ -318,7 +322,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ===== PARTNERS SECTION - LOGO SLIDER ===== */}
+        {/* ===== PARTNERS SECTION - SAME AS HOME ===== */}
         <section className="py-10 overflow-hidden">
           <div className="mb-6">
             <span className="text-xs font-['Orbitron'] text-[#012156]/60 tracking-widest">OUR PARTNERS</span>
@@ -330,16 +334,22 @@ export default function ServicesPage() {
 
           <div className="relative overflow-hidden">
             <div className="flex animate-slide">
-              {/* First set */}
               {partnerLogos.map((logo, index) => (
                 <div key={`first-${index}`} className="flex-shrink-0 w-40 h-20 mx-6 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-                  <img src={logo} alt={`Partner ${index + 1}`} className="max-w-full max-h-full object-contain" />
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="max-w-full max-h-full object-contain p-2"
+                  />
                 </div>
               ))}
-              {/* Second set (duplicate for seamless loop) */}
               {partnerLogos.map((logo, index) => (
                 <div key={`second-${index}`} className="flex-shrink-0 w-40 h-20 mx-6 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-                  <img src={logo} alt={`Partner ${index + 1}`} className="max-w-full max-h-full object-contain" />
+                  <img
+                    src={logo.src}
+                    alt={`${logo.alt} duplicate`}
+                    className="max-w-full max-h-full object-contain p-2"
+                  />
                 </div>
               ))}
             </div>
@@ -394,7 +404,7 @@ export default function ServicesPage() {
         }
 
         .animate-slide {
-          animation: slide 20s linear infinite;
+          animation: slide 45s linear infinite;
           display: flex;
           width: max-content;
         }
@@ -410,15 +420,13 @@ export default function ServicesPage() {
           overflow: hidden;
         }
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
 
-        /* Hide scrollbar for IE, Edge and Firefox */
         .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>

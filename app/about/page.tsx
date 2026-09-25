@@ -8,39 +8,48 @@ import Footer from '@/components/Footer'
 
 export default function AboutPage() {
   useEffect(() => {
-    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll')
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active')
         }
       })
-    }, { 
+    }, {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     })
-    
+
     animateElements.forEach(item => {
       observer.observe(item)
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
-  // Partner logos
+  // Partner logos — SAME as home page (from /public/images/)
   const partnerLogos = [
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Cisco',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Nexans',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Sophos',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Alcatel',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Cyberoam',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=NComputing',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=VMware',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Microsoft',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=Dell',
-    'https://via.placeholder.com/120x60/012156/FFFFFF?text=HP',
+    { src: '/images/partners/sigona.png', alt: 'Sigona Golf Club' },
+    { src: '/images/partners/uplands.png', alt: 'Uplands Farm' },
+    { src: '/images/partners/turnpoint.jpg', alt: 'Turnpoint' },
+    { src: '/images/partners/uhai.jpg', alt: 'Uhai' },
+    { src: '/images/partners/roy.png', alt: 'Roy' },
+    { src: '/images/partners/cylinder.png', alt: 'Cylinder' },
+    { src: '/images/partners/pcea.png', alt: 'PCEA' },
+    { src: '/images/partners/child.png', alt: 'Child' },
+    { src: '/images/partners/clinton.png', alt: 'Clinton Hotel' },
+    { src: '/images/partners/edenville (1).png', alt: 'EdenVille' },
+    { src: '/images/partners/faith.png', alt: 'Faith' },
+    { src: '/images/partners/ikweta.png', alt: 'Ikweta' },
+    { src: '/images/partners/kirinyaga.png', alt: 'Kirinyaga' },
+    { src: '/images/partners/linksoft.png', alt: 'Linksoft' },
+    { src: '/images/partners/moi (1).png', alt: 'Moi' },
+    { src: '/images/partners/ag (1).png', alt: 'AG' },
+    { src: '/images/partners/happy (1).png', alt: 'Happy' },
+    { src: '/images/partners/runda.png', alt: 'Runda' },
+    { src: '/images/partners/Texaco.png', alt: 'Texaco' },
+    { src: '/images/partners/spring-logo.png', alt: 'Spring' },
   ]
 
   return (
@@ -50,7 +59,6 @@ export default function AboutPage() {
 
         {/* ===== ABOUT HERO ===== */}
         <section className="relative py-12 md:py-16 pt-32 sm:pt-28 lg:pt-32">
-          {/* Background Watermark */}
           <div
             className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
             style={{
@@ -96,21 +104,21 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="relative rounded-xl overflow-hidden shadow-lg animate-on-scroll">
-              <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/about2.jpg"
                 alt="Telefix Solutions Team"
-                className="w-full h-[300px] md:h-[400px] object-cover"
+                className="w-full h-[220px] md:h-[280px] object-cover"
               />
             </div>
           </div>
         </section>
 
-        {/* ===== MISSION, VISION & PURPOSE ===== */}
+        {/* ===== MISSION, VISION & PURPOSE — COMPACT ON MOBILE ===== */}
         <section className="py-10">
-          <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-8">
+          <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-6 md:mb-8">
             Our Purpose, <span className="text-gray-500">Mission & Vision</span>
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
             {[
               {
                 icon: "fa-bullseye",
@@ -137,12 +145,17 @@ export default function AboutPage() {
                 iconBg: "bg-[#012156]/20"
               }
             ].map((item, i) => (
-              <div key={i} className={`${item.bg} ${item.border} rounded-xl p-6 border-2 shadow-sm hover:shadow-md transition-all animate-on-scroll`}>
-                <div className={`${item.iconBg} w-14 h-14 rounded-full flex items-center justify-center mb-4`}>
-                  <i className={`fas ${item.icon} text-2xl text-[#012156]`}></i>
+              <div
+                key={i}
+                className={`${item.bg} ${item.border} rounded-lg md:rounded-xl p-3 md:p-6 border-2 shadow-sm hover:shadow-md transition-all animate-on-scroll flex md:block items-start gap-3 md:gap-0`}
+              >
+                <div className={`${item.iconBg} w-9 h-9 md:w-14 md:h-14 rounded-lg md:rounded-full flex items-center justify-center md:mb-4 flex-shrink-0`}>
+                  <i className={`fas ${item.icon} text-sm md:text-2xl text-[#012156]`}></i>
                 </div>
-                <h3 className="font-['Orbitron'] text-lg font-bold text-[#012156] mb-2">{item.title}</h3>
-                <p className="text-gray-700 text-sm font-['Ubuntu'] leading-relaxed">{item.desc}</p>
+                <div className="md:block">
+                  <h3 className="font-['Orbitron'] text-xs md:text-lg font-bold text-[#012156] mb-1 md:mb-2">{item.title}</h3>
+                  <p className="text-gray-700 text-[10px] md:text-sm font-['Ubuntu'] leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -178,7 +191,7 @@ export default function AboutPage() {
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-8">
             Virtualization <span className="text-gray-500">Solutions</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6 mb-8 animate-on-scroll">
             <div className="space-y-3">
               <h3 className="font-['Orbitron'] text-xl font-bold text-[#5ABE71]">Server Virtualization</h3>
@@ -190,10 +203,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/server.avif"
                 alt="Server Virtualization"
-                className="w-full h-[220px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -216,10 +229,10 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/desktop.jpg"
                 alt="Desktop Virtualization"
-                className="w-full h-[220px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -230,7 +243,7 @@ export default function AboutPage() {
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-8">
             Security <span className="text-gray-500">Solutions</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6 mb-6 animate-on-scroll">
             <div className="space-y-3">
               <h3 className="font-['Orbitron'] text-xl font-bold text-[#5ABE71]">IP Surveillance Systems</h3>
@@ -239,10 +252,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/ip.jpg"
                 alt="IP Surveillance Systems"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -255,10 +268,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg md:order-1">
-              <img 
-                src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/access.webp"
                 alt="Access Control Systems"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -277,10 +290,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/data.webp"
                 alt="Data Center Solutions"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -307,10 +320,10 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/about.jpg"
                 alt="Solar Power Systems"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -323,10 +336,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg md:order-1">
-              <img 
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/heater.webp"
                 alt="Solar Water Heaters"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -339,10 +352,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/electrical .jpg"
                 alt="Electrical Solutions"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -362,10 +375,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/about2.jpg"
                 alt="Borehole Drilling"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -390,10 +403,10 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg md:order-1">
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=350&fit=crop&auto=format&q=80" 
+              <img
+                src="/images/filtration.webp"
                 alt="Water Filtration Systems"
-                className="w-full h-[200px] object-cover"
+                className="w-full h-[180px] md:h-[220px] object-cover"
               />
             </div>
           </div>
@@ -433,7 +446,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ===== PARTNERS SECTION - LOGO SLIDER ===== */}
+        {/* ===== PARTNERS SECTION - SAME AS HOME ===== */}
         <section className="py-10 overflow-hidden">
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-8">
             Our <span className="text-gray-500">Partners</span>
@@ -442,23 +455,21 @@ export default function AboutPage() {
 
           <div className="relative overflow-hidden">
             <div className="flex animate-slide">
-              {/* First set */}
               {partnerLogos.map((logo, index) => (
                 <div key={`first-${index}`} className="flex-shrink-0 w-40 h-20 mx-6 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-                  <img src={logo} alt={`Partner ${index + 1}`} className="max-w-full max-h-full object-contain" />
+                  <img src={logo.src} alt={logo.alt} className="max-w-full max-h-full object-contain p-2" />
                 </div>
               ))}
-              {/* Second set (duplicate for seamless loop) */}
               {partnerLogos.map((logo, index) => (
                 <div key={`second-${index}`} className="flex-shrink-0 w-40 h-20 mx-6 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-                  <img src={logo} alt={`Partner ${index + 1}`} className="max-w-full max-h-full object-contain" />
+                  <img src={logo.src} alt={`${logo.alt} duplicate`} className="max-w-full max-h-full object-contain p-2" />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ===== CTA SECTION - LEFT ALIGNED ===== */}
+        {/* ===== CTA SECTION ===== */}
         <section className="py-10">
           <div className="bg-gradient-to-r from-[#012156]/8 to-[#5ABE71]/8 rounded-xl p-6 border border-gray-200 animate-on-scroll max-w-3xl">
             <h2 className="font-['Orbitron'] text-xl md:text-2xl font-bold text-[#012156] mb-3">
@@ -501,7 +512,7 @@ export default function AboutPage() {
         }
 
         .animate-slide {
-          animation: slide 20s linear infinite;
+          animation: slide 45s linear infinite;
           display: flex;
           width: max-content;
         }

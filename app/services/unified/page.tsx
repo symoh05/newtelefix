@@ -8,9 +8,8 @@ import Footer from '@/components/Footer'
 
 export default function UnifiedPage() {
   useEffect(() => {
-    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll')
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
@@ -19,15 +18,15 @@ export default function UnifiedPage() {
           }, index * 150)
         }
       })
-    }, { 
+    }, {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     })
-    
+
     animateElements.forEach(item => {
       observer.observe(item)
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
@@ -103,9 +102,9 @@ export default function UnifiedPage() {
   ]
 
   const galleryImages = [
-    { src: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=600&h=400&fit=crop&auto=format&q=80", title: "Video Conferencing Solutions" },
-    { src: "https://images.unsplash.com/photo-1558002038-1055907df827?w=600&h=400&fit=crop&auto=format&q=80", title: "Business Communication Systems" },
-    { src: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=600&h=400&fit=crop&auto=format&q=80", title: "Collaboration & Messaging Tools" }
+    { src: "/images/conf.jpg", title: "Video Conferencing Solutions" },
+    { src: "/images/bus.jpg", title: "Business Communication Systems" },
+    { src: "/images/mes.jpg", title: "Collaboration & Messaging Tools" }
   ]
 
   return (
@@ -163,7 +162,7 @@ export default function UnifiedPage() {
                 <img 
                   src={image.src} 
                   alt={image.title}
-                  className="w-full h-[200px] object-cover"
+                  className="w-full h-[180px] object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
                   <div className="text-white font-['Orbitron'] text-xs">{image.title}</div>
@@ -172,14 +171,19 @@ export default function UnifiedPage() {
             ))}
           </div>
 
+          {/* UC Features — LEFT ALIGNED */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {ucFeatures.map((feature, index) => (
-              <div key={index} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll text-center">
-                <div className="w-12 h-12 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mx-auto mb-3">
-                  <i className={`fas ${feature.icon} text-xl text-[#5ABE71]`}></i>
+              <div key={index} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
+                <div className="flex items-start gap-3 text-left">
+                  <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                    <i className={`fas ${feature.icon} text-base text-[#5ABE71]`}></i>
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-['Orbitron'] text-xs font-bold text-[#012156] mb-1">{feature.title}</h3>
+                    <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{feature.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-['Orbitron'] text-sm font-bold text-[#012156] mb-1">{feature.title}</h3>
-                <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>

@@ -8,9 +8,8 @@ import Footer from '@/components/Footer'
 
 export default function BoreholePage() {
   useEffect(() => {
-    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll')
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
@@ -19,20 +18,20 @@ export default function BoreholePage() {
           }, index * 150)
         }
       })
-    }, { 
+    }, {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     })
-    
+
     animateElements.forEach(item => {
       observer.observe(item)
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
   const services = [
-    { icon: "fa-drill", title: "Borehole Drilling", desc: "Professional borehole drilling services using state-of-the-art rigs and equipment for reliable water supply solutions." },
+    { icon: "fa-water", title: "Borehole Drilling", desc: "Professional borehole drilling services using state-of-the-art rigs and equipment for reliable water supply solutions." },
     { icon: "fa-sun", title: "Solar Conversion", desc: "Solar-powered borehole pumping systems for sustainable and cost-effective water supply solutions." },
     { icon: "fa-tools", title: "Maintenance & Repair", desc: "Comprehensive borehole maintenance, repair, and servicing to ensure optimal performance and longevity." }
   ]
@@ -83,9 +82,9 @@ export default function BoreholePage() {
   ]
 
   const galleryImages = [
-    { src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&auto=format&q=80", title: "Borehole Drilling Services" },
-    { src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&auto=format&q=80", title: "Solar Water Pumping Systems" },
-    { src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&auto=format&q=80", title: "Water Storage Solutions" }
+    { src: "/images/about2.jpg", title: "Borehole Drilling Services" },
+    { src: "/images/pump.jpg", title: "Solar Water Pumping Systems" },
+    { src: "/images/storage.jpg", title: "Water Storage Solutions" }
   ]
 
   return (
@@ -138,10 +137,10 @@ export default function BoreholePage() {
           <div className="grid md:grid-cols-3 gap-4 mb-6">
             {galleryImages.map((image, index) => (
               <div key={index} className="relative rounded-xl overflow-hidden shadow-lg animate-on-scroll">
-                <img 
-                  src={image.src} 
+                <img
+                  src={image.src}
                   alt={image.title}
-                  className="w-full h-[200px] object-cover"
+                  className="w-full h-[180px] object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
                   <div className="text-white font-['Orbitron'] text-xs">{image.title}</div>
@@ -150,14 +149,19 @@ export default function BoreholePage() {
             ))}
           </div>
 
+          {/* Services — LEFT ALIGNED */}
           <div className="grid md:grid-cols-3 gap-4">
             {services.map((service, index) => (
               <div key={index} className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
-                <div className="w-12 h-12 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mb-3">
-                  <i className={`fas ${service.icon} text-xl text-[#5ABE71]`}></i>
+                <div className="flex items-start gap-3 text-left">
+                  <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                    <i className={`fas ${service.icon} text-base text-[#5ABE71]`}></i>
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-['Orbitron'] text-xs font-bold text-[#012156] mb-1">{service.title}</h3>
+                    <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{service.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-['Orbitron'] text-sm font-bold text-[#012156] mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-xs font-['Ubuntu'] leading-relaxed">{service.desc}</p>
               </div>
             ))}
           </div>
@@ -250,7 +254,7 @@ export default function BoreholePage() {
           </div>
         </section>
 
-        {/* ===== WATER STORAGE SOLUTIONS ===== */}
+        {/* ===== WATER STORAGE SOLUTIONS — LEFT ALIGNED ===== */}
         <section className="py-10">
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-4">
             Water Storage <span className="text-gray-500">Solutions</span>
@@ -265,11 +269,15 @@ export default function BoreholePage() {
           <div className="grid md:grid-cols-3 gap-4">
             {storageSolutions.map((solution, index) => (
               <div key={index} className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
-                <div className="w-12 h-12 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mb-3">
-                  <i className="fas fa-tint text-xl text-[#5ABE71]"></i>
+                <div className="flex items-start gap-3 text-left">
+                  <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                    <i className="fas fa-tint text-base text-[#5ABE71]"></i>
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-['Orbitron'] text-xs font-bold text-[#012156] mb-1">{solution.title}</h4>
+                    <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{solution.desc}</p>
+                  </div>
                 </div>
-                <h4 className="font-['Orbitron'] text-sm font-bold text-[#012156] mb-1">{solution.title}</h4>
-                <p className="text-gray-500 text-xs font-['Ubuntu'] leading-relaxed">{solution.desc}</p>
               </div>
             ))}
           </div>

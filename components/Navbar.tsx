@@ -24,6 +24,7 @@ export default function Navbar() {
     setIsServicesOpen(false)
   }, [pathname])
 
+  // Reordered: Home → About → Services → Portfolio → Gallery → Contact
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -42,6 +43,9 @@ export default function Navbar() {
     { name: 'Power Solutions', href: '/services/power' },
     { name: 'Borehole Solutions', href: '/services/borehole' },
     { name: 'Electrical Solutions', href: '/services/electrical' },
+    { name: 'Water Filtration', href: '/services/filtration' },
+    { name: 'Water Storage', href: '/services/storage' },
+    { name: 'Telecom Solutions', href: '/services/telecom' },
   ]
 
   const isServicePage = serviceLinks.some(link => pathname === link.href) || pathname === '/services'
@@ -71,23 +75,37 @@ export default function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-xs font-['Orbitron'] tracking-wider transition-colors relative cursor-pointer ${
-                    pathname === link.href
-                      ? 'text-[#012156] font-semibold'
-                      : 'text-gray-500 hover:text-[#012156]'
-                  }`}
-                >
-                  {link.name}
-                  {pathname === link.href && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
-                  )}
-                </Link>
-              ))}
-              {/* Services Dropdown */}
+              {/* Home */}
+              <Link
+                href="/"
+                className={`text-xs font-['Orbitron'] tracking-wider transition-colors relative cursor-pointer ${
+                  pathname === '/'
+                    ? 'text-[#012156] font-semibold'
+                    : 'text-gray-500 hover:text-[#012156]'
+                }`}
+              >
+                Home
+                {pathname === '/' && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
+                )}
+              </Link>
+
+              {/* About */}
+              <Link
+                href="/about"
+                className={`text-xs font-['Orbitron'] tracking-wider transition-colors relative cursor-pointer ${
+                  pathname === '/about'
+                    ? 'text-[#012156] font-semibold'
+                    : 'text-gray-500 hover:text-[#012156]'
+                }`}
+              >
+                About
+                {pathname === '/about' && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
+                )}
+              </Link>
+
+              {/* Services Dropdown — now right after About */}
               <div className="relative group">
                 <Link
                   href="/services"
@@ -103,7 +121,7 @@ export default function Navbar() {
                     <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
                   )}
                 </Link>
-                <div className="absolute top-full left-0 min-w-[200px] bg-white rounded-xl shadow-xl border border-gray-200/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 mt-1">
+                <div className="absolute top-full left-0 min-w-[220px] bg-white rounded-xl shadow-xl border border-gray-200/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 mt-1">
                   {serviceLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -117,6 +135,52 @@ export default function Navbar() {
                   ))}
                 </div>
               </div>
+
+              {/* Portfolio */}
+              <Link
+                href="/portfolio"
+                className={`text-xs font-['Orbitron'] tracking-wider transition-colors relative cursor-pointer ${
+                  pathname === '/portfolio'
+                    ? 'text-[#012156] font-semibold'
+                    : 'text-gray-500 hover:text-[#012156]'
+                }`}
+              >
+                Portfolio
+                {pathname === '/portfolio' && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
+                )}
+              </Link>
+
+              {/* Gallery */}
+              <Link
+                href="/gallery"
+                className={`text-xs font-['Orbitron'] tracking-wider transition-colors relative cursor-pointer ${
+                  pathname === '/gallery'
+                    ? 'text-[#012156] font-semibold'
+                    : 'text-gray-500 hover:text-[#012156]'
+                }`}
+              >
+                Gallery
+                {pathname === '/gallery' && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
+                )}
+              </Link>
+
+              {/* Contact */}
+              <Link
+                href="/contact"
+                className={`text-xs font-['Orbitron'] tracking-wider transition-colors relative cursor-pointer ${
+                  pathname === '/contact'
+                    ? 'text-[#012156] font-semibold'
+                    : 'text-gray-500 hover:text-[#012156]'
+                }`}
+              >
+                Contact
+                {pathname === '/contact' && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#5ABE71] rounded-full"></span>
+                )}
+              </Link>
+
               {/* Call Now Button */}
               <a
                 href="tel:+254721722823"
@@ -154,21 +218,33 @@ export default function Navbar() {
             `}</style>
             <div className="pb-4 pt-1 border-t border-gray-200/60">
               <div className="flex flex-col gap-0.5">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`text-sm font-['Orbitron'] tracking-wider transition-colors py-3 px-3 rounded-lg border-b border-gray-200 last:border-b-0 cursor-pointer ${
-                      pathname === link.href
-                        ? 'text-[#012156] font-semibold bg-gray-100/60'
-                        : 'text-gray-500 hover:text-[#012156] hover:bg-gray-100/40'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                {/* Mobile Services Dropdown */}
+                {/* Home */}
+                <Link
+                  href="/"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-['Orbitron'] tracking-wider transition-colors py-3 px-3 rounded-lg border-b border-gray-200 last:border-b-0 cursor-pointer ${
+                    pathname === '/'
+                      ? 'text-[#012156] font-semibold bg-gray-100/60'
+                      : 'text-gray-500 hover:text-[#012156] hover:bg-gray-100/40'
+                  }`}
+                >
+                  Home
+                </Link>
+
+                {/* About */}
+                <Link
+                  href="/about"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-['Orbitron'] tracking-wider transition-colors py-3 px-3 rounded-lg border-b border-gray-200 last:border-b-0 cursor-pointer ${
+                    pathname === '/about'
+                      ? 'text-[#012156] font-semibold bg-gray-100/60'
+                      : 'text-gray-500 hover:text-[#012156] hover:bg-gray-100/40'
+                  }`}
+                >
+                  About
+                </Link>
+
+                {/* Mobile Services Dropdown — now right after About */}
                 <div className="border-b border-gray-200 last:border-b-0">
                   <button
                     onClick={() => setIsServicesOpen(!isServicesOpen)}
@@ -183,7 +259,7 @@ export default function Navbar() {
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isServicesOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+                      isServicesOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
                     <div className="pl-4 pr-2 py-1 space-y-0.5">
@@ -207,6 +283,46 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
+
+                {/* Portfolio */}
+                <Link
+                  href="/portfolio"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-['Orbitron'] tracking-wider transition-colors py-3 px-3 rounded-lg border-b border-gray-200 last:border-b-0 cursor-pointer ${
+                    pathname === '/portfolio'
+                      ? 'text-[#012156] font-semibold bg-gray-100/60'
+                      : 'text-gray-500 hover:text-[#012156] hover:bg-gray-100/40'
+                  }`}
+                >
+                  Portfolio
+                </Link>
+
+                {/* Gallery */}
+                <Link
+                  href="/gallery"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-['Orbitron'] tracking-wider transition-colors py-3 px-3 rounded-lg border-b border-gray-200 last:border-b-0 cursor-pointer ${
+                    pathname === '/gallery'
+                      ? 'text-[#012156] font-semibold bg-gray-100/60'
+                      : 'text-gray-500 hover:text-[#012156] hover:bg-gray-100/40'
+                  }`}
+                >
+                  Gallery
+                </Link>
+
+                {/* Contact */}
+                <Link
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-['Orbitron'] tracking-wider transition-colors py-3 px-3 rounded-lg border-b border-gray-200 last:border-b-0 cursor-pointer ${
+                    pathname === '/contact'
+                      ? 'text-[#012156] font-semibold bg-gray-100/60'
+                      : 'text-gray-500 hover:text-[#012156] hover:bg-gray-100/40'
+                  }`}
+                >
+                  Contact
+                </Link>
+
                 {/* Mobile Call Now Button */}
                 <a
                   href="tel:+254721722823"

@@ -150,13 +150,6 @@ export default function Footer() {
             <i className="fas fa-shield-alt text-[#5ABE71]/50 mr-1"></i>
             &copy; {currentYear} Telefix Solutions. All rights reserved.
           </p>
-          <p className="text-gray-400 text-[10px] font-['Ubuntu']">
-            <i className="fas fa-code text-[#5ABE71]/50 mr-1"></i>
-            Built with ❤️ by{' '}
-            <Link href="/credits" className="text-[#5ABE71] hover:text-[#012156] transition-colors">
-              Simon K.
-            </Link>
-          </p>
         </div>
       </div>
     </footer>

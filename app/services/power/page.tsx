@@ -8,9 +8,8 @@ import Footer from '@/components/Footer'
 
 export default function PowerPage() {
   useEffect(() => {
-    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll')
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
@@ -19,15 +18,15 @@ export default function PowerPage() {
           }, index * 150)
         }
       })
-    }, { 
+    }, {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     })
-    
+
     animateElements.forEach(item => {
       observer.observe(item)
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
@@ -66,9 +65,9 @@ export default function PowerPage() {
   ]
 
   const galleryImages = [
-    { src: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop&auto=format&q=80", title: "Solar Panel Systems Installation" },
-    { src: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop&auto=format&q=80", title: "Solar Water Pumping Systems" },
-    { src: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop&auto=format&q=80", title: "Solar Water Heating Systems" }
+    { src: "/images/about.jpg", title: "Solar Panel Systems Installation" },
+    { src: "/images/pump.jpg", title: "Solar Water Pumping Systems" },
+    { src: "/images/heater.webp", title: "Solar Water Heating Systems" }
   ]
 
   return (
@@ -121,10 +120,10 @@ export default function PowerPage() {
           <div className="grid md:grid-cols-3 gap-4 mb-6">
             {galleryImages.map((image, index) => (
               <div key={index} className="relative rounded-xl overflow-hidden shadow-lg animate-on-scroll">
-                <img 
-                  src={image.src} 
+                <img
+                  src={image.src}
                   alt={image.title}
-                  className="w-full h-[200px] object-cover"
+                  className="w-full h-[180px] object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
                   <div className="text-white font-['Orbitron'] text-xs">{image.title}</div>
@@ -143,7 +142,7 @@ export default function PowerPage() {
           </div>
         </section>
 
-        {/* ===== SOLAR WATER HEATERS ===== */}
+        {/* ===== SOLAR WATER HEATERS — LEFT ALIGNED ===== */}
         <section className="py-10">
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-4">
             Solar Water <span className="text-gray-500">Heaters</span>
@@ -158,17 +157,21 @@ export default function PowerPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {heaterTypes.map((heater, index) => (
               <div key={index} className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
-                <div className="w-12 h-12 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mb-3">
-                  <i className="fas fa-fire text-xl text-[#5ABE71]"></i>
+                <div className="flex items-start gap-3 text-left">
+                  <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                    <i className="fas fa-fire text-base text-[#5ABE71]"></i>
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-['Orbitron'] text-xs font-bold text-[#012156] mb-1">{heater.title}</h4>
+                    <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{heater.desc}</p>
+                  </div>
                 </div>
-                <h4 className="font-['Orbitron'] text-sm font-bold text-[#012156] mb-1">{heater.title}</h4>
-                <p className="text-gray-500 text-xs font-['Ubuntu'] leading-relaxed">{heater.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ===== ELECTRICAL SOLUTIONS ===== */}
+        {/* ===== ELECTRICAL SOLUTIONS — LEFT ALIGNED ===== */}
         <section className="py-10">
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-4">
             Electrical <span className="text-gray-500">Solutions</span>
@@ -184,17 +187,21 @@ export default function PowerPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {electricalServices.map((service, index) => (
               <div key={index} className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
-                <div className="w-12 h-12 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mb-3">
-                  <i className="fas fa-plug text-xl text-[#5ABE71]"></i>
+                <div className="flex items-start gap-3 text-left">
+                  <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                    <i className="fas fa-plug text-base text-[#5ABE71]"></i>
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-['Orbitron'] text-xs font-bold text-[#012156] mb-1">{service.title}</h4>
+                    <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{service.desc}</p>
+                  </div>
                 </div>
-                <h4 className="font-['Orbitron'] text-sm font-bold text-[#012156] mb-1">{service.title}</h4>
-                <p className="text-gray-500 text-xs font-['Ubuntu'] leading-relaxed">{service.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ===== POWER BACKUP ===== */}
+        {/* ===== POWER BACKUP — LEFT ALIGNED ===== */}
         <section className="py-10">
           <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-4">
             Power Backup <span className="text-gray-500">Systems</span>
@@ -203,11 +210,15 @@ export default function PowerPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {backupSystems.map((system, index) => (
               <div key={index} className="bg-white rounded-xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
-                <div className="w-12 h-12 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mb-3">
-                  <i className="fas fa-bolt text-xl text-[#5ABE71]"></i>
+                <div className="flex items-start gap-3 text-left">
+                  <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                    <i className="fas fa-bolt text-base text-[#5ABE71]"></i>
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-['Orbitron'] text-xs font-bold text-[#012156] mb-1">{system.title}</h3>
+                    <p className="text-gray-500 text-[10px] font-['Ubuntu'] leading-relaxed">{system.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-['Orbitron'] text-sm font-bold text-[#012156] mb-2">{system.title}</h3>
-                <p className="text-gray-600 text-xs font-['Ubuntu'] leading-relaxed">{system.desc}</p>
               </div>
             ))}
           </div>

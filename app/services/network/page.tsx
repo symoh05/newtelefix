@@ -8,9 +8,8 @@ import Footer from '@/components/Footer'
 
 export default function NetworkPage() {
   useEffect(() => {
-    // Animate elements on scroll
     const animateElements = document.querySelectorAll('.animate-on-scroll')
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
@@ -19,15 +18,15 @@ export default function NetworkPage() {
           }, index * 100)
         }
       })
-    }, { 
+    }, {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     })
-    
+
     animateElements.forEach(item => {
       observer.observe(item)
     })
-    
+
     return () => observer.disconnect()
   }, [])
 
@@ -46,42 +45,42 @@ export default function NetworkPage() {
       location: "Nairobi Headquarters",
       description: "Complete structured cabling solution with CAT6A infrastructure supporting high-speed data transfer for financial operations.",
       tags: ["CAT6A Cabling", "Fiber Backbone", "Network Racks", "20-year Warranty"],
-      image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=500&fit=crop&auto=format&q=80"
+      image: "/images/old.jpg"
     },
     {
       title: "Technobrain Ltd",
       location: "Nairobi Office",
       description: "Advanced network infrastructure with redundancy systems for uninterrupted operations in software development environment.",
       tags: ["Redundant Links", "PoE Switches", "Security VLANs", "Network Monitoring"],
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&auto=format&q=80"
+      image: "/images/tek.jpg"
     },
     {
       title: "Netherlands Embassy",
       location: "Nairobi, Kenya",
       description: "Secure network infrastructure with advanced encryption and segmented networks for diplomatic communications.",
       tags: ["High Security", "Encryption", "Segmented Networks", "Access Control"],
-      image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=500&fit=crop&auto=format&q=80"
+      image: "/images/nethelands.jpg"
     },
     {
       title: "West Indian Ocean Cable Co.",
       location: "Mombasa, Kenya",
       description: "Data center network infrastructure with high-speed fiber connections and redundant power systems.",
       tags: ["Fiber Optics", "Data Center", "Redundant Power", "24/7 Monitoring"],
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&auto=format&q=80"
+      image: "/images/west.jpg"
     },
     {
       title: "Rentokil Ltd",
       location: "Nairobi Office",
       description: "Office network setup with wireless access points and structured cabling for multi-department connectivity.",
       tags: ["Wireless APs", "Office Network", "Multi-floor Setup", "Guest Network"],
-      image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=500&fit=crop&auto=format&q=80"
+      image: "/images/ren.jpg"
     },
     {
       title: "Norfolk Hotel",
       location: "Nairobi, Kenya",
       description: "RUCKUS Wireless network solution customized for hotel architecture with seamless guest connectivity.",
       tags: ["RUCKUS Wireless", "Hotel Network", "Guest WiFi", "Bandwidth Management"],
-      image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=500&fit=crop&auto=format&q=80"
+      image: "/images/north.jpg"
     }
   ]
 
@@ -175,11 +174,11 @@ export default function NetworkPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((project, index) => (
               <div key={index} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all animate-on-scroll">
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={project.image} 
+                <div className="relative h-48 overflow-hidden bg-gray-100">
+                  <img
+                    src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 right-3 bg-[#5ABE71] text-white text-[10px] px-3 py-1 rounded-full font-['Orbitron'] tracking-wider">
                     Completed
@@ -236,25 +235,54 @@ export default function NetworkPage() {
           </div>
         </section>
 
-        {/* ===== PARTNERSHIPS ===== */}
-        <section className="py-10">
-          <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] mb-4">
-            Our Technology <span className="text-gray-500">Partners</span>
-          </h2>
-          <p className="text-gray-500 text-sm mb-6 font-['Ubuntu']">
-            Backed by 20-year manufacturer warranty on all our cabling solutions through our partnerships with world-leading technology manufacturers
-          </p>
+        {/* ===== PARTNERSHIPS — AUTO-SCROLLING MARQUEE ===== */}
+        <section className="py-10 overflow-hidden">
+          <div className="mb-6">
+            <h2 className="font-['Orbitron'] text-2xl md:text-3xl font-bold text-[#012156] text-left">
+              Our Technology <span className="text-gray-500">Partners</span>
+            </h2>
+            <p className="text-gray-500 text-sm mt-2 font-['Ubuntu'] text-left max-w-2xl">
+              Backed by 20-year manufacturer warranty on all our cabling solutions through our partnerships with world-leading technology manufacturers
+            </p>
+          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {partners.map((partner, index) => (
-              <div key={index} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#5ABE71] transition-all text-center animate-on-scroll">
-                <div className="w-14 h-14 rounded-full bg-[#5ABE71]/10 flex items-center justify-center mx-auto mb-2">
-                  <i className="fas fa-handshake text-2xl text-[#5ABE71]"></i>
+          <div className="relative overflow-hidden">
+            <div className="flex animate-slide">
+              {/* First set */}
+              {partners.map((partner, index) => (
+                <div
+                  key={`first-${index}`}
+                  className="flex-shrink-0 w-48 mx-3 bg-white rounded-xl p-4 border border-gray-200 shadow-sm"
+                >
+                  <div className="flex items-center gap-3 text-left">
+                    <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-handshake text-base text-[#5ABE71]"></i>
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-['Orbitron'] text-sm font-bold text-[#012156] truncate">{partner.name}</h3>
+                      <p className="text-gray-500 text-[10px] font-['Ubuntu'] truncate">{partner.role}</p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-['Orbitron'] text-sm font-bold text-[#012156]">{partner.name}</h3>
-                <p className="text-gray-500 text-[10px] font-['Ubuntu']">{partner.role}</p>
-              </div>
-            ))}
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {partners.map((partner, index) => (
+                <div
+                  key={`second-${index}`}
+                  className="flex-shrink-0 w-48 mx-3 bg-white rounded-xl p-4 border border-gray-200 shadow-sm"
+                >
+                  <div className="flex items-center gap-3 text-left">
+                    <div className="w-10 h-10 rounded-lg bg-[#5ABE71]/10 flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-handshake text-base text-[#5ABE71]"></i>
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-['Orbitron'] text-sm font-bold text-[#012156] truncate">{partner.name}</h3>
+                      <p className="text-gray-500 text-[10px] font-['Ubuntu'] truncate">{partner.role}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -297,6 +325,25 @@ export default function NetworkPage() {
         .animate-on-scroll.active {
           opacity: 1;
           transform: translateY(0);
+        }
+
+        @keyframes slide {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-slide {
+          animation: slide 35s linear infinite;
+          display: flex;
+          width: max-content;
+        }
+
+        .animate-slide:hover {
+          animation-play-state: paused;
         }
       `}</style>
     </div>
